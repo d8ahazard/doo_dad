@@ -2,6 +2,18 @@
 
 import os, subprocess, logging
 
+def prep()
+  subprocess.check_output("java -jar apktool.jar if .\source\system\framework\framework-res.apk", stderr=subprocess.STDOUT, shell=True ) 
+  subprocess.check_output("java -jar apktool.jar if .\source\system\framework\framework-miui-res.apk" , stderr=subprocess.STDOUT, shell=True) 
+
+def decompile( work )
+  prep()
+  try:
+    subprocess.check_output("java -jar apktool.jar d -b .\source\system\%s .\source\system\%s.out" , stderr=subprocess.STDOUT, shell=True % ( work, work ) )
+  except:
+    return work
+    continue
+
 def compile( work )
   errors=list()
   try:
@@ -17,9 +29,14 @@ def compile( work )
     return work
 
 
+#decompile
+#w=open('files.txt', r)
+#for files in w.readlines():
+#  decompile(files)
+
 # loop through the working file list
+w.seek(0,0)
 retry=list()
-w=open('files.txt', r)
 for files in w.readlines():
   retry.append(compile(files))
 
