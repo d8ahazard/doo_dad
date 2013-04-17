@@ -1,6 +1,6 @@
 #! /usr/bin/python
 
-import os, subprocess
+import os, subprocess, logging
 
 def compile( work )
   errors=list()
@@ -27,6 +27,13 @@ w.close()
 
 # retry 
 if retry:
-  for files in retry:
-    compile(files)
-  
+  attempt=1
+  while attempt:
+    attempt=raw_input("You have some failed file attempts.  Would you like to retry? Y/N" )
+    if attempt.uppercase() == 'Y':
+      attempt = 0
+      for files in retry:
+        compile(files)
+    else if attempt.uppercase() == 'N':
+      attempt = 0
+    else: attempt = 1
