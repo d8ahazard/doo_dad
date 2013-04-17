@@ -37,4 +37,5 @@ while retry:
         retry.append(compile(files))
     else if attempt.uppercase() == 'N':
       attempt = 0
+      retry = list()
     else: attempt = 1
