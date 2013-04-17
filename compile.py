@@ -26,14 +26,15 @@ for files in w.readlines():
 w.close()
 
 # retry 
-if retry:
+while retry:
   attempt=1
   while attempt:
     attempt=raw_input("You have some failed file attempts.  Would you like to retry? Y/N" )
     if attempt.uppercase() == 'Y':
       attempt = 0
       for files in retry:
-        compile(files)
+        retry.remove(files)
+        retry.append(compile(files))
     else if attempt.uppercase() == 'N':
       attempt = 0
     else: attempt = 1
